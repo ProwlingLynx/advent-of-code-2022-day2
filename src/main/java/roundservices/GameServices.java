@@ -33,4 +33,7 @@ public final class GameServices {
     public static int awardPointsForChosenSign(IGameRound gameRound){
         return pointsForYourChosenSign.get(gameRound.getYourSign());
     }
+    public static int awardPointsForRoundOutcome(IGameRound gameRound) {
+        return outcomeTree.get(gameRound.getElfSign()).get(gameRound.getYourSign());
+    }
 }
