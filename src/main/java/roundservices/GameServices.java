@@ -36,4 +36,12 @@ public final class GameServices {
     public static int awardPointsForRoundOutcome(IGameRound gameRound) {
         return outcomeTree.get(gameRound.getElfSign()).get(gameRound.getYourSign());
     }
+    public static int calculateTotalScore(List<IGameRound> gameRounds){
+        int totalScore = 0;
+        for (IGameRound gameRound: gameRounds){
+            totalScore += awardPointsForChosenSign(gameRound);
+            totalScore += awardPointsForRoundOutcome(gameRound);
+        }
+        return totalScore;
+    }
 }

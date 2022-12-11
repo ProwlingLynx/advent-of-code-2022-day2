@@ -3,12 +3,16 @@ package roundservices;
 import rounddata.GameRound;
 import rounddata.IGameRound;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class TestGameServices {
     public static void main(String[] args) {
         testAwardPointsForChosenSign();
         testAwardPointsForRoundOutcome("A"); // Rock
         testAwardPointsForRoundOutcome("B"); // Paper
         testAwardPointsForRoundOutcome("C"); // Scissors
+        testCalculateTotalScore();
     }
     private static void testAwardPointsForChosenSign(){
         IGameRound testRound = new GameRound("C", "Z");
@@ -26,5 +30,12 @@ class TestGameServices {
         System.out.println(GameServices.awardPointsForRoundOutcome(testRound2));
         System.out.println("You chose Rock points for the round are:");
         System.out.println(GameServices.awardPointsForRoundOutcome(testRound3));
+    }
+    private static void testCalculateTotalScore() {
+        List<IGameRound> gameRounds = new ArrayList<>();
+        gameRounds.add(new GameRound("A", "X"));
+        int actual = GameServices.calculateTotalScore(gameRounds);
+        System.out.println("We got: " + actual);
+        System.out.println("We expected 4");
     }
 }
