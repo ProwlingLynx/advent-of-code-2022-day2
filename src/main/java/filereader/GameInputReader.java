@@ -26,11 +26,6 @@ public class GameInputReader {
             String roundString = sc.nextLine();
             String elf = roundString.substring(0,1);
             String you = roundString.substring(2, 3);
-            System.out.println(String.format(
-                    "Elf used: %s!\nYou used: %s!",
-                    elf,
-                    you
-            ));
             gameRounds.add(new GameRound(elf, you));
         }
         return gameRounds;
