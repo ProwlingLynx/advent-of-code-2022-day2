@@ -8,6 +8,7 @@ import java.util.List;
 public final class GameServices {
     private static final HashMap<String, Integer> pointsForYourChosenSign = new HashMap<>();
     private static final HashMap<String, HashMap<String, Integer>> outcomeTree = new HashMap<>();
+    private static final HashMap<String, Integer> decoder = new HashMap<>();
     static {
         pointsForYourChosenSign.put("X", 1);
         pointsForYourChosenSign.put("Y", 2);
@@ -29,6 +30,9 @@ public final class GameServices {
         roundC.put("Y", 0);
         roundC.put("Z", 3);
 
+        decoder.put("X", 0);
+        decoder.put("Y", 3);
+        decoder.put("Z", 6);
     }
     public static int awardPointsForChosenSign(IGameRound gameRound){
         return pointsForYourChosenSign.get(gameRound.getYourSign());
@@ -44,4 +48,15 @@ public final class GameServices {
         }
         return totalScore;
     }
+    public static void rigGame(List<IGameRound> gameRounds){
+        for (IGameRound gameRound: gameRounds){
+            int desiredOutcome = decoder.get(gameRound.getYourSign());
+            int index = 0;
+            String[] signs = {"X", "Y", "Z"};
+            while(desiredOutcome != awardPointsForRoundOutcome(gameRound)){
+                gameRound.setYourSign(signs[index++]);
+            }
+        }
+    }
+
 }

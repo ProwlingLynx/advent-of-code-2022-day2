@@ -11,6 +11,7 @@ public class Solution {
         try{
             GameInputReader gir = new GameInputReader("src/main/resources/firstSolution.txt");
             List<IGameRound> gameRounds = gir.mapRoundStringToGameRoundObject();
+            GameServices.rigGame(gameRounds);
             int totalScore = GameServices.calculateTotalScore(gameRounds);
             System.out.println(totalScore);
         } catch (Exception e) {

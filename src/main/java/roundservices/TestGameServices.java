@@ -8,11 +8,12 @@ import java.util.List;
 
 class TestGameServices {
     public static void main(String[] args) {
-        testAwardPointsForChosenSign();
-        testAwardPointsForRoundOutcome("A"); // Rock
-        testAwardPointsForRoundOutcome("B"); // Paper
-        testAwardPointsForRoundOutcome("C"); // Scissors
-        testCalculateTotalScore();
+//        testAwardPointsForChosenSign();
+//        testAwardPointsForRoundOutcome("A"); // Rock
+//        testAwardPointsForRoundOutcome("B"); // Paper
+//        testAwardPointsForRoundOutcome("C"); // Scissors
+//        testCalculateTotalScore();
+        testRigGame();
     }
     private static void testAwardPointsForChosenSign(){
         IGameRound testRound = new GameRound("C", "Z");
@@ -37,5 +38,16 @@ class TestGameServices {
         int actual = GameServices.calculateTotalScore(gameRounds);
         System.out.println("We got: " + actual);
         System.out.println("We expected 4");
+    }
+    private static void testRigGame() {
+        List<IGameRound> gameRounds = new ArrayList<>();
+        gameRounds.add(new GameRound("A", "Y"));
+        gameRounds.add(new GameRound("B", "X"));
+        gameRounds.add(new GameRound("C", "Z"));
+
+        GameServices.rigGame(gameRounds);
+        int actual = GameServices.calculateTotalScore(gameRounds);
+        System.out.println("We got: " + actual);
+        System.out.println("We expected 12");
     }
 }
